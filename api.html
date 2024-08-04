@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Calendario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Jt27NXFoaoApmYm81iuO0PkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/venobox/1.9.3/venobox.min.css" integrity="sha512-e+0yqAgUQFoRrJ4pZigQXpOE0S7J9IGwmgH801h4H5ODqOCG8/GRfXHQ+9ab754NL79O7wDwdjwY3CcU8sEANg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.4.0/main.css">
+    <link rel="stylesheet" href="http://www.cch-oriente.unam.mx/css/eventos.css">
+    <link rel="stylesheet" href="http://www.cch-oriente.unam.mx/css/style.css">
+    <link rel="icon" href="http://www.cch-oriente.unam.mx/images/favicon.png" type="image/x-icon">
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8e1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .form-inline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-inline .form-group {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .form-inline .form-group label {
+            width: 100%;
+            text-align: left;
+        }
+
+        .form-inline .form-group input,
+        .form-inline .form-group select {
+            width: 100%;
+            height: calc(1.5em + 0.75rem + 2px); /* Adjust the height for consistency */
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .btn-custom {
+            width: 100%;
+            padding: 10px 0;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .calendar {
+            background-color: #ffebcc;
+            border: 1px solid #e6a86a;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1000px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        .calendar h3 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .week {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .day-container {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .day {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            margin-right: 10px; /* Agrega margen a la derecha */
+            margin-left: 10px;  /* Agrega margen a la izquierda */
+        }
+
+        .day h2 {
+            font-size: 18px;
+            color: #333;
+            margin: 0 0 10px;
+            text-align: center;
+        }
+
+        .event {
+            margin-bottom: 10px;
+        }
+
+        .time {
+            color: #FFA500;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .activity {
+            color: #003366;
+        }
+
+        .notes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .note, .reminder, .urgent {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 30%;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .note h3, .reminder h3, .urgent h3 {
+            font-size: 18px;
+            color: #333;
+            margin: 0 0 10px;
+            text-align: center;
+        }
+
+        #downloadButton {
+            display: none;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #downloadButton:hover {
+            background-color: #218838;
+        }
+
+        .alertaApellido {
+            color: red;
+            margin-top: 5px;
+            visibility: hidden; /* Initially hidden */
+        }
+
+        /* Media Queries for Responsive Design */
+        @media (max-width: 768px) {
+            .calendar {
+                padding: 5px;
+                margin: 0 auto; /* Centramos el contenedor */
+            }
+
+            .calendar h3 {
+                font-size: 16px; /* Reducido para ajustar mejor el espacio */
+            }
+
+            .day {
+                padding: 5px;
+                margin-bottom: 5px;
+                margin-right: 5px; /* Agrega margen a la derecha */
+                margin-left: 5px;  /* Agrega margen a la izquierda */
+            }
+
+            .day h2 {
+                font-size: 14px; /* Tamaño de fuente reducido */
+            }
+
+            .time, .activity {
+                font-size: 12px; /* Tamaño de fuente reducido */
+            }
+
+            .notes {
+                flex-direction: column;
+            }
+
+            .note, .reminder, .urgent {
+                width: 100%;
+                margin-bottom: 5px; /* Reducción del margen para compactar */
+            }
+
+            .note h3, .reminder h3, .urgent h3 {
+                font-size: 14px; /* Tamaño de fuente reducido */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .calendar {
+                padding: 2px;
+                margin: 0 auto; /* Centramos el contenedor */
+            }
+
+            .calendar h3 {
+                font-size: 14px; /* Más reducido para pantallas muy pequeñas */
+            }
+
+            .day {
+                padding: 3px; /* Padding reducido */
+                margin-bottom: 5px;
+                margin-right: 5px; /* Agrega margen a la derecha */
+                margin-left: 5px;  /* Agrega margen a la izquierda */
+            }
+
+            .day h2 {
+                font-size: 12px; /* Tamaño de fuente más pequeño para ajuste en pantalla */
+            }
+
+            .time, .activity {
+                font-size: 10px; /* Tamaño de fuente más pequeño para mejor ajuste */
+            }
+
+            .note h3, .reminder h3, .urgent h3 {
+                font-size: 12px; /* Reducción de tamaño de fuente */
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="mt-5">Consulta tu Calendario de inscripción</h3>
+        <form id="calendarForm" class="form-inline mt-3">
+            <div class="form-group">
+                <label for="surname">Primer Apellido:</label>
+                <input type="text" class="form-control" id="surname" placeholder="Ingresa tu apellido">
+                <div class="alertaApellido" id="errorApellido">Por favor, ingresa tu apellido.</div>
+            </div>
+            <div class="form-group">
+                <label for="shift">Turno:</label>
+                <select class="form-control" id="shift">
+                    <option value="Matutino">Matutino</option>
+                    <option value="Vespertino">Vespertino</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-custom">Obtener Calendario</button>
+        </form>
+        <a id="downloadButton" class="btn btn-success btn-custom" href="#" download="calendario.pdf" style="margin-bottom: 5em;">Descargar Calendario</a>
+    </div>
+
+    <div class="calendar" id="calendarContainer" ]>
+        <h3>ORGANIZA TU SEMANA DE BIENVENIDA</h3>
+        <div id="calendarContent"></div>
+    </div>
+
+    <script>
+        class CalendarManager {
+            constructor() {
+                this.form = document.getElementById('calendarForm');
+                this.surnameField = document.getElementById('surname');
+                this.shiftField = document.getElementById('shift');
+                this.surnameError = document.getElementById('errorApellido');
+                this.downloadButton = document.getElementById('downloadButton');
+                this.calendarContainer = document.getElementById('calendarContainer');
+                this.calendarContent = document.getElementById('calendarContent');
+
+                this.initEventListeners();
+            }
+
+            initEventListeners() {
+                this.form.addEventListener('submit', (event) => this.handleSubmit(event));
+                this.downloadButton.addEventListener('click', (event) => this.handleDownload(event));
+            }
+
+            handleSubmit(event) {
+                event.preventDefault();
+                this.surnameError.style.visibility = 'hidden'; 
+
+                let surname = this.surnameField.value.trim().toUpperCase();
+                let shift = this.shiftField.value;
+
+                if (surname === '') {
+                    this.surnameError.style.visibility = 'visible';
+                    return;
+                }
+
+                let initial = surname.charAt(0);
+                this.fetchCalendarInfo(initial, shift);
+                this.prepareDownloadLink(initial, shift);
+            }
+
+            fetchCalendarInfo(initial, shift) {
+                fetch(`http://localhost:8000/get_calendar_info?letter=${initial}&shift=${shift}`)
+                    .then(response => response.json())
+                    .then(data => this.renderCalendar(data))
+                    .catch(error => console.error('Error al obtener la información del calendario:', error));
+            }
+
+            renderCalendar(data) {
+                this.calendarContent.innerHTML = data.calendar_html;
+                this.calendarContainer.style.display = 'block';
+            }
+
+            prepareDownloadLink(initial, shift) {
+                fetch(`http://localhost:8000/get_calendar?letter=${initial}&shift=${shift}`)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        this.downloadButton.href = url;
+                        this.downloadButton.style.display = 'block';
+                    })
+                    .catch(error => console.error('Error al preparar el enlace de descarga:', error));
+            }
+
+            handleDownload(event) {
+                if (this.downloadButton.href === '#') {
+                    event.preventDefault();
+                    alert('El enlace de descarga no está disponible. Por favor, obtén el calendario primero.');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new CalendarManager();
+        });
+    </script>
+</body>
+</html>

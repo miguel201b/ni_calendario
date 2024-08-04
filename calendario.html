@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Bienvenida</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8e1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calendar {
+            background-color: #ffebcc;
+            border: 1px solid #e6a86a;
+            border-radius: 10px;
+            padding: 20px;
+            width: 80%;
+            max-width: 900px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .week {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .day {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 18%;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .day h2 {
+            font-size: 18px;
+            color: #333;
+            margin: 0 0 10px;
+            text-align: center;
+        }
+
+        .event {
+            margin-bottom: 10px;
+        }
+
+        .time {
+            color: #FFA500;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .activity {
+            color: #003366;
+        }
+
+        .notes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .note, .reminder, .urgent {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 30%;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .note h3, .reminder h3, .urgent h3 {
+            font-size: 18px;
+            color: #333;
+            margin: 0 0 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar">
+        <h1>ORGANIZA TU SEMANA DE BIENVENIDA</h1>
+        <div class="week">
+            <div class="day">
+                <h2>Lunes</h2>
+                <div class="event">
+                    <span class="time">10:00</span>
+                    <span class="activity">CEREMONIA DE BIENVENIDA</span>
+                </div>
+                <div class="event">
+                    <span class="time">Todo el día</span>
+                    <span class="activity">EXPO FAMILIA PUMA</span>
+                </div>
+                <div class="event">
+                    <span class="activity">LLENA TU HOJA DE DATOS PERSONALES</span>
+                </div>
+                <div class="event">
+                    <span class="activity">DESCARGA TU COMPROBANTE</span>
+                </div>
+            </div>
+            <div class="day">
+                <h2>Martes</h2>
+                <div class="event">
+                    <span class="time">9:00 hrs.</span>
+                    <span class="activity">CHARLA PARA PADRES</span>
+                </div>
+            </div>
+            <div class="day">
+                <h2>Miércoles</h2>
+                <div class="event">
+                    <span class="time">15:00</span>
+                    <span class="activity">Inscripción</span>
+                </div>
+            </div>
+            <div class="day">
+                <h2>Jueves</h2>
+                <div class="event">
+                    <span class="time">08:00</span>
+                    <span class="activity">EMA</span>
+                </div>
+            </div>
+            <div class="day">
+                <h2>Viernes</h2>
+            </div>
+        </div>
+        <div class="notes">
+            <div class="note">
+                <h3>NOTAS</h3>
+            </div>
+            <div class="reminder">
+                <h3>NO OLVIDES:</h3>
+            </div>
+            <div class="urgent">
+                <h3>URGENTE</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
