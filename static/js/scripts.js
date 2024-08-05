@@ -30,7 +30,7 @@ class CalendarManager {
 
         let initial = surname.charAt(0);
         this.fetchCalendarInfo(initial, shift);
-        this.prepareDownloadLink(initial, shift);
+        this.prepareDownloadLink(initial, shift, surname);
     }
 
     fetchCalendarInfo(initial, shift) {
@@ -45,8 +45,8 @@ class CalendarManager {
         this.calendarContainer.style.display = 'block';
     }
 
-    prepareDownloadLink(initial, shift) {
-        fetch(`/get_calendar?letter=${initial}&shift=${shift}`)
+    prepareDownloadLink(initial, shift, surname) {
+        fetch(`/get_calendar?letter=${initial}&shift=${shift}&surname=${surname}`)
             .then(response => response.blob())
             .then(blob => {
                 const url = window.URL.createObjectURL(blob);
