@@ -7,7 +7,6 @@ import pytz
 
 def obtener_horas(inicial, turno):
     inicial = inicial.upper()
-
     if 'A' <= inicial <= 'E':
         horaBienvenida = "10:00 hrs."
         horaCharla = "9:00 hrs."
@@ -81,6 +80,7 @@ def obtener_horas(inicial, turno):
 
 
 def insertarEstadisticas(letra,apellido):
+    print("Variables de entorno disponibles:", os.environ)
     # Obtener la URL de la base de datos desde la variable de entorno
     database_url = os.getenv('apikeyEstadisticas')
     if database_url is None:
