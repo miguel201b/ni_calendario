@@ -1,0 +1,129 @@
+
+#calendar {
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+#calendar2 {
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.fc-event-title {
+  text-wrap: wrap;
+}
+
+
+.fc .fc-button-primary {
+  background-color: rgb(255, 193, 7);
+  border-color: rgb(255, 193, 7);
+  color: rgb(0, 0, 0);
+
+}
+
+.fc .fc-button-primary:disabled {
+  background: rgba(255, 193, 7, 0.534);
+  color: #000000;
+  opacity: 1;
+  border-color: rgba(255, 193, 7, 0.562);
+}
+
+.evento-con-imagen {
+  cursor: pointer;
+}
+
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  pointer-events: auto;
+  background-color: transparent;
+  border: 0;
+}
+
+.close {
+  position: absolute;
+  top: 1px;
+  right: 10px;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #050505;
+  text-shadow: 0 1px 0 #080808;
+  opacity: .5;
+
+}
+
+
+@media only screen and (max-width: 600px) {
+  .modal-content img {
+    width: 100%;
+  }
+
+  #calendar {
+    min-height: 80vh; 
+  }
+
+  #calendar2 {
+    min-height: 80vh; 
+  }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .modal-content img {
+    width: 80%;
+  }
+
+  #calendar {
+    min-height: 80%;
+  }
+
+  #calendar2 {
+    min-height: 80%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  #calendar {
+    width: 70%;
+    height: 90%;
+    margin: auto;
+  }
+
+  #calendar2 {
+    width: 70%;
+    height: 90%;
+    margin: auto;
+  }
+
+  .modal-content img {
+    width: 80%;
+  }
+
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  #calendar {
+    width: 50%;
+    height: auto;
+    margin: auto;
+  }
+
+  #calendar2 {
+    width: 50%;
+    height: auto;
+    margin: auto;
+  }
+
+  .modal-content img {
+    width: 100%;
+  }
+  
+}
