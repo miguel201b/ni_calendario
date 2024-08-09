@@ -10,7 +10,6 @@ from unidecode import unidecode
 app = Flask(__name__)
 CORS(app)  # Habilitar CORS
 
-# Define el directorio donde se almacenan tus archivos PDF
 PDF_DIRECTORY = 'Resources'
 
 @app.route('/get_calendar', methods=['GET'])
@@ -33,7 +32,7 @@ def get_calendar():
     if not os.path.isfile(file_path):
         return jsonify({"error": "File not found"}), 404
 
-    # Enviar el archivo con el nombre 'calendario.pdf'
+    # Enviar el archivo
     return send_file(file_path, as_attachment=True, download_name='calendario.pdf')
 
 @app.route('/get_calendar_info', methods=['GET'])
